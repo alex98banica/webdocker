@@ -1,0 +1,60 @@
+BANICA ALEXANDRU IONUT
+342C3
+
+<=====================================>
+Pentru aceasta tema am folosit API-ul Flask cu Flask-SQLAlchemy
+Pentru baza de date am folosit mysql
+Pentru a vedea si gestiona baza de date am folosit phpMyAdmin
+
+Am folosit aceste tehnologi ata pentru a invata ceva nou cat si din faptul ca
+mi s-au parut destul de des intalnite si folosite.
+
+Baza de date
+	User:flask
+	Parola:passwd
+
+Aplicatia ruleaza pa portul 5000
+phpMyAdmin ruleaza pe portul 5010
+
+In baza de date am 3 tabele: Country, City, Temperatures in care stochez
+informatiile necesare.
+Fiecare tabela are campul id care este incrementat automat la adaugarea unei
+noi intrari in tabela
+
+Pentru Country am:
+   	-id
+    -nume
+    -lat
+    -lon
+
+Pentru City am:
+	-id
+    -idTara
+    -nume
+    -lat
+    -lon
+
+Pentru Temperatures am:
+    -id
+    -idOras
+    -valoare
+    -timestamp - e un camp de forma datetime
+
+<=====================================>
+Aplicatia este scrisa in app.py
+Ma conectez la baza de date, construiesc cele 3 modele pentru tabelele din baza de date,iar
+in continuare am functiile pentru fiecare cere.
+Daca  am parametrii  in body folosesc request.json si ii iau de acolo, verific daca sunt toti
+daca nu intorc eroare, verificarea se face prin try: exception:
+Raspunsurile sunt date prin functia Response din Flask.
+Pentru lucrul cu baza de date si tabele folosesc Flask-SQLAlchemy folosint functii deja implementate
+pentru insert,delete, select.
+Pentru parametrii din url folosesc request.args.get si verific daca sunt toti.
+La metodele PUT pentru orase si temperaturi verific daca nou id de la tara respectiv oras se afla
+in tabele.
+La temperaturi timestamp-ul este luat automat pentru momentul introducerii,pentru metoada put
+timestamp-ul se actualizeaza.
+Atunci cand am data de inceput si final iau din timestam doar data si o compar cu parametrii din
+url.
+Parametrii din url pentru data sunt transformati in structura de tip datetime.datetime.date()
+pentru a putea compara datele.
